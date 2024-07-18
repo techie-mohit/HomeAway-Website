@@ -27,7 +27,7 @@ async function main() {
 
 
 app.get("/",(req,res)=>{
-    res.send("working");
+    res.send("THIS IS AN HOME PAGE");
 })
 
 // INDEX ROUTE
@@ -79,22 +79,6 @@ app.delete("/listings/:id", async (req, res) => {
   });
   
 
-
-
-// // app.get("/testlisting", async(req, res)=>{
-// //     let sampleListing= new Listing({
-// //         title: "my new villa",
-// //         description: "In the beach",
-// //         price: 30000,
-// //         location: "Goa ",
-// //         country: "India",
-
-// //     });
-
-//     await sampleListing.save();
-//     console.log("sample was save");
-//     res.send("successful testing");
-// });
 
 app.listen(8000, ()=>{
     console.log(`server started at port is 8000`);
