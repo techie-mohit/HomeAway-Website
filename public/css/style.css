@@ -101,3 +101,7 @@ body{
     padding-left:0;
     padding-right:0;
 }
+
+.error{
+    offset-position: center;
+}
