@@ -13,6 +13,7 @@ const User= require("./models/user.js");
 
 
 
+
 const listings= require("./routes/listings.js");
 const reviews= require("./routes/review.js");
 const users= require("./routes/user.js");
@@ -71,6 +72,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req,res,next)=>{
     res.locals.success= req.flash("success");
     res.locals.error= req.flash("error");
+    res.locals.curruser= req.user; // we use locals variable because we do not use directly req.user in boilerplate
     next();
 });
 

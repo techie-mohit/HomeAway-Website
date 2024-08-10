@@ -15,8 +15,13 @@ wrapAsync(async(req,res)=>{
         const newuser= new User({email, username});
         const registeredUser= await User.register(newuser, password);
         console.log(registeredUser);
-        req.flash("success", "Welcome to wanderlust");
-        res.redirect("/listings");
+        req.login(registeredUser, (err)=>{
+            if(err){
+                return next(err);
+            }
+            req.flash("success", "welcoe to wanderlust");
+            res.redirect("/listings");
+        });
 
     }
     catch(e){
@@ -37,7 +42,16 @@ failureFlash: true,
 async(req,res)=>{
     req.flash("success", "welcome back to wanderlust");
     res.redirect("/listings");
-})
+});
 
+router.get("/logout", (req,res,next)=>{
+    req.logout((err)=>{
+        if(err){
+            return next(err);
+        }
+        req.flash("success", "you are log out");
+        res.redirect("/listings");
+    })
+})
 
 module.exports=router;
