@@ -42,6 +42,7 @@ router.get("/new", isLoggedIn, (req,res)=>{
 router.post("/", validateListing, wrapAsync(async(req,res)=>{
     // let{title,description,image,price,location,country}= req.body;
     const newlisting=  new Listing(req.body.listing);
+    newlisting.owner=req.user._id;
     await newlisting.save();
     req.flash("success", "New Listing Created");
     res.redirect("/listings");
@@ -50,11 +51,14 @@ router.post("/", validateListing, wrapAsync(async(req,res)=>{
 // SHOW ROUTE
 router.get("/:id",isLoggedIn, wrapAsync(async(req,res)=>{
     let {id}= req.params;
-    const listingdetails= await Listing.findById(id).populate("reviews");
+    const listingdetails= await Listing.findById(id)
+    .populate("reviews")
+    .populate("owner");
     if(!listingdetails){
         req.flash("error", "Listing Not Found");
         res.redirect("/listings");
     }
+    console.log(listingdetails);
     res.render("listings/show.ejs", {listingdetails});
     })
 );
