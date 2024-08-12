@@ -76,16 +76,6 @@ app.use((req,res,next)=>{
     next();
 });
 
-app.get("/demouser", async(req,res)=>{
-    let fakeuser= new User({
-        email: "student@dmail.com",
-        username: "delta"   // username is created because we use passport-local-mongoose middleware
-    });
-
-    let registeredUser= await User.register(fakeuser, "helloworld");
-    res.send(registeredUser);
-})
-
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 app.use("/",users);
