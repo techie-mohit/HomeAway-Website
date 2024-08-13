@@ -1,16 +1,18 @@
 const Listing = require("../models/listing.js");
 
+
+// FOR INDEX PAGE
 module.exports.index = async(req,res)=>{
     const alllistings= await Listing.find({});
     res.render("listings/index.ejs", {alllistings});
 };
 
-
+// FOR NEW FORM CREATE
 module.exports.renderNewForm = (req,res)=>{
     res.render("listings/new.ejs")
 };
 
-
+// FOR SHOW LISTINGS
 module.exports.showListing = async(req,res)=>{
     let {id}= req.params;
     const listingdetails= await Listing.findById(id)
@@ -29,6 +31,7 @@ module.exports.showListing = async(req,res)=>{
 };
 
 
+// CONNECT NEW FORM TO INDEX PAGE
 module.exports.createListing = async(req,res)=>{
     // let{title,description,image,price,location,country}= req.body;
     const newlisting=  new Listing(req.body.listing);
@@ -39,6 +42,7 @@ module.exports.createListing = async(req,res)=>{
 };
 
 
+// CREATE EDIT FORM FOR LISTING
 module.exports.renderEditForm = async(req,res)=>{
     let {id}= req.params;
     const listing= await Listing.findById(id);
@@ -50,6 +54,7 @@ module.exports.renderEditForm = async(req,res)=>{
 };
 
 
+// CONNECT OR POST EDITTED FORM TO LISTING
 module.exports.updateListing = async(req,res)=>{
     let{id}= req.params;
     const listing= await Listing.findByIdAndUpdate(id, {...req.body.listing});
@@ -58,7 +63,7 @@ module.exports.updateListing = async(req,res)=>{
 };
 
 
-
+// DELETE LISTINGS
 module.exports.deleteListing = async (req, res) => {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
