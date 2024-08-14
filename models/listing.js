@@ -11,12 +11,14 @@ const listingSchema= new Schema({
         type :String,
     },
     image: {
-        type :String,
-        default: "https://tse3.mm.bing.net/th?id=OIP.-SFha-JzImrEyR_rM5YWhgHaHa&pid=Api&P=0&h=180",
-        set : (v) => 
-            v==="" 
-        ? "https://tse3.mm.bing.net/th?id=OIP.-SFha-JzImrEyR_rM5YWhgHaHa&pid=Api&P=0&h=180" 
-        : v,
+        // type :String,
+        // default: "https://tse3.mm.bing.net/th?id=OIP.-SFha-JzImrEyR_rM5YWhgHaHa&pid=Api&P=0&h=180",
+        // set : (v) => 
+        //     v==="" 
+        // ? "https://tse3.mm.bing.net/th?id=OIP.-SFha-JzImrEyR_rM5YWhgHaHa&pid=Api&P=0&h=180" 
+        // : v,
+        url : String,
+        filename : String,
         
     },
     price: {

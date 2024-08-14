@@ -34,8 +34,11 @@ module.exports.showListing = async(req,res)=>{
 // CONNECT NEW FORM TO INDEX PAGE
 module.exports.createListing = async(req,res)=>{
     // let{title,description,image,price,location,country}= req.body;
+    let url= req.file.path;
+    let filename = req.file.filename;
     const newlisting=  new Listing(req.body.listing);
     newlisting.owner=req.user._id;
+    newlisting.image= {url, filename};
     await newlisting.save();
     req.flash("success", "New Listing Created");
     res.redirect("/listings");
