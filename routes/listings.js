@@ -22,7 +22,7 @@ router.get("/",  wrapAsync(listingController.index));
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 // ADD NEW ROUTE
-router.post("/", isLoggedIn,  upload.single('listing[image]'), wrapAsync(listingController.createListing));
+router.post("/", isLoggedIn,  upload.single('listing[image]'), validateListing, wrapAsync(listingController.createListing));
 
 
 
@@ -34,7 +34,7 @@ router.get("/:id", wrapAsync(listingController.showListing));
 router.get("/:id/edit", isLoggedIn, isOwner,  wrapAsync(listingController.renderEditForm));
 
 // UPDATE ROUTE
-router.put("/:id", isLoggedIn, isOwner, validateListing, wrapAsync(listingController.updateListing));
+router.put("/:id", isLoggedIn, isOwner, upload.single('listing[image]'), validateListing, wrapAsync(listingController.updateListing));
 // DELETE ROUTE
 
 router.delete("/:id",isLoggedIn, isOwner,  wrapAsync(listingController.deleteListing));
