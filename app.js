@@ -57,9 +57,6 @@ const sessionoption= {
     },
 };
 
-app.get("/",(req,res)=>{
-    res.send("THIS IS AN HOME PAGE");
-})
 
 
 app.use(session(sessionoption));

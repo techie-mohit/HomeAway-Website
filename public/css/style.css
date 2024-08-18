@@ -14,6 +14,22 @@ body{
     height:5rem; 
     background-color: white;
 }
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.filter{
+    text-align:center;
+    margin-right:2rem;
+    margin-top:1rem;
+    opacity:0.8;
+}
+
+.filter:hover{
+    opacity:1;
+    cursor:pointer;
+}
 
 .fa-compass{
     color:#fe424d;
@@ -104,4 +120,11 @@ body{
 
 .error{
     offset-position: center;
+}
+
+
+.corner{
+    position:absolute;
+    top:110px;
+    right:20px;
 }
